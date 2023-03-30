@@ -1,0 +1,442 @@
+html {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 62.5%;
+}
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    width: 1200px;
+    max-width: 100%;
+}
+
+.container-fluid {
+    width: 100%;
+}
+
+.--fw-bold {
+    font-weight: 500;
+}
+
+button {
+    border: none;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+.btn {
+    cursor: pointer;
+    padding: 0 12px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-radius: 2px;
+    border: 1px solid transparent;
+}
+
+
+//? Modal -------------------------------------------------------------------------
+
+.modal {
+    $time-animation-modal: .2s;
+    @include overlay(1000, rgba(0, 0, 0, .3));
+    display: flex;
+
+    @include hidden;
+    transition: opacity .2s linear;
+    &__content {  
+        margin: auto;
+        .modal-inner {
+            width: 500px;
+            background-color: $white-color;
+            overflow: hidden;
+
+            transform-origin: center top;
+            transform: scaleY(.4);
+            @include hidden;
+            transition: all .6s ease;
+            .auth-form {
+                display: flex;
+                flex-direction: column;
+                padding: 18px 32px;
+                &__header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin: 12px 0 55px 0;
+                    .auth-form-title {
+                        font-size: 2.4rem;
+                        text-transform: capitalize;
+                        font-weight: 500;
+                    }
+                    .switch-form-btn {
+                        user-select: none;
+                        background-color: $white-color;
+                        font-weight: 700;
+                        cursor: pointer;
+                        transition: .2s linear;
+                        @include text(1.4rem, $submain-color);
+                        &:hover {
+                            color: gray;
+                        }
+                    }
+                    .auth-form-title, .switch-form-btn {
+                        padding: 0 8px;
+                    }
+                }
+                &__form {
+                    .form-group {
+                        display: flex;
+                        height: 40px;
+                        &__input {
+                            @include text(1.2rem, $text-black-color);
+                            outline: none;
+                            padding: 12px;
+                            border: 1px solid #ccc;
+                            width: 100%;
+                            transition: .2s ease-in-out .1s;
+                            opacity: .9;
+                            &:focus {
+                                border-color: $black-color;
+                                font-size: 1.3rem;
+                                opacity: 1;
+                            }
+                        }
+                    }
+                    .form-group + .form-group {
+                        margin-top: 12px;
+                    }
+                }
+                &__policies {
+                    padding: 20px 8px;
+                    font-size: 1.1rem;
+                    text-align: center;
+                    font-weight: 500;
+                    opacity: .9;
+                    > span {
+                        line-height: 1.3;
+                        > a {
+                            text-decoration: none;
+                            color: $main-color;
+                        }
+                    }
+                }
+                &__confirmation {
+                    display: flex;
+                    justify-content: flex-end;
+                    gap: 8px;
+                    margin-top: 75px;
+                    font-size: 1.3rem;
+                    .auth-confirmation-btn {
+                        text-transform: uppercase;
+                        min-width: 100px;
+                        transition: .1s ease-in-out .1s;
+                    }
+                    .back-btn {
+                        &:hover {
+                            border-color: $main-color;
+                            color: $main-color;
+                        }
+                    }
+                    .register-btn {
+                        background-color: $main-color;
+                        color: $white-color;
+                        &:hover {
+                            border-color: $main-color;
+                            background-color: $white-color;
+                            color: $main-color;
+                        }
+                    }
+                }
+                &__forget-pw {
+                    $gap-forget-pw: 30px;
+                    display: flex;
+                    justify-content: flex-end;
+                    margin-top: 4px;
+                    gap: $gap-forget-pw;
+                    .forget-pw-btn {
+                        > a {
+                            display: block;
+                            padding: 8px 0;
+
+                            text-decoration: none;
+                            font-size: 1.2rem;
+                            font-weight: 500;
+
+                            opacity: .8;
+                            transition: opacity .2s linear;
+                        }
+                        &:hover {
+                            > a {
+                                opacity: 1;
+                            }
+                        }
+                    }
+                    .forgetPw-btn {
+                        text-transform: capitalize;
+                        > a {
+                            color: $main-color;
+                        }
+                    }
+                    .needHelp-btn {
+                        position: relative;
+                        > a {
+                            color: #939393;
+                        }
+                        @include poAbs-v-line-item(-$gap-forget-pw / 2, 2px, 65%, #f1f1f1)
+                    }
+                }
+            }
+            .auth-form-footer {
+                @include midflex;
+                background-color: #f1f1f1;
+                padding: 12px 0;
+                gap: 8px;
+                .shopee-connection-btn {
+                    text-decoration: none;
+                    font-size: 1.1rem;
+                    width: 170px;
+                    padding: 10px;
+                    display: flex;
+                    align-items: center;
+                    gap: 30px;
+                    border-radius: 3px;
+                    transition: .2s ease-in;
+                    > i {
+                        font-size: 1.6rem;
+                    } 
+                    &:hover {
+                        opacity: .8;
+                    }
+                }
+                .fb-connection {
+                    background-color: #2a4275;
+                    color: $white-color;
+                }
+                .gg-connection {
+                    background-color: $white-color;
+                    color: gray;
+                    > i {
+                        color: #de4032;
+                    }
+                }
+                .sms-connection {
+                    background-color: #22ba4f;
+                    color: $white-color;
+                }
+            }
+            .auth-form-footer--login {
+                .shopee-connection-btn {
+                    width: 110px;
+                    justify-content: center;
+                    gap: initial;
+                    position: relative;
+                    > i {
+                        position: absolute;
+                        left: 10px;
+                    }
+                }
+            }
+        }
+        .form-register, .form-login {
+            display: none;
+            transform: scaleY(.9);
+            opacity: 0;
+            animation: modalForm .2s linear forwards;
+        }
+        .form-register {
+            transform-origin: bottom center;
+        }
+        .form-login {
+            transform-origin: top center;
+        }
+        .modal-inner--active {
+            @include visible;
+            transform: scaleY(1);
+        }
+        @keyframes modalForm {
+            to {
+                opacity: 1;
+                transform: scaleY(1);
+            }
+        }
+    }
+}
+
+
+//? Menu-mobile -------------------------------------------------------------------
+
+.menu-mobile {
+    @include overlay(1000, rgba(0, 0, 0, .3));
+
+    @include hidden;
+    transition: .3s ease-in-out .1s;
+    &__wrapper {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: $white-color;
+
+        transform: translateX(-80%);    
+        transition: .6s ease-in-out;
+        .menu-mobile__content {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            .menu-mobile__list {
+                padding: 20px 35px 0;
+                margin: auto 0 auto auto;
+                &-item {
+                    > a {
+                        display: block;
+                        @include text(2.2rem, $black-color);
+                        text-decoration: none;
+                        font-weight: 300;
+                        letter-spacing: 1px;
+                        position: relative;
+
+                        padding: 18px 30px;
+                        transition: .2s ease-in-out;
+                        overflow: hidden;
+                        &:after {
+                            content: "";
+                            display: inline-block;
+                            width: 100%;
+                            height: 1px;
+                            background-color: $main-color;
+                            
+                            position: absolute;
+                            top: calc(100% - 3px);
+                            left: 0;
+                            
+                            transform: scaleX(0);
+                            transform-origin: center right;
+                            transition: transform .4s cubic-bezier(.23,.87,.84,.55);
+                            
+                        }
+                        &:hover {
+                            color: $main-color;
+                            &::after {
+                                transform: scaleX(1);
+                                transform-origin: center left;
+                            }
+                        }
+                    }
+                }
+            }
+            .menu-mobile__connect {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+
+                position: absolute;
+                top: 15px;
+                right: 50px;
+                @include text(1.5rem, $black-color);
+                > i {
+                    transition: .3s linear;
+                    font-size: 2.6rem;
+                    &:hover {
+                        color: $main-color;
+                        cursor: pointer;
+                    }
+                }
+            }
+            .menu-mobile__logo {
+                width: 100%;
+                height: 70px;
+                background-color: $main-color;
+                @include midflex;
+                &-link {
+                    > span {
+                        display: none;
+                    }
+                    > svg {
+                        width: 130px;
+                        height: 45px;
+                    }
+                }
+            }
+            &::before {
+                left: 60px;
+                top: 0;
+                height: 100%;
+                width: 1px;
+            }
+            &:after {
+                top: 54px;
+                left: 0;
+                width: 100%;
+                height: 1px;
+            }
+            &::before, &::after {
+                content: "";
+                position: absolute;
+                background-color: $main-color;
+            }
+        }
+    }
+}
+.multiUseBtn {
+    display: none;
+    width: 20px;
+    height: 18px;
+    position: fixed;
+    top: 18px;
+    left: 20px;
+    z-index: 9999999;
+    background-color: transparent;
+    cursor: pointer;
+    transition: transform .5s ease;
+    &:hover {
+        transform: skewX(20deg);
+    }
+    .line-top-btn {
+        top: 0;
+    }
+    .line-bot-btn {
+        top: 100%;
+    }
+    .line-top-btn, .line-bot-btn {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 3px;
+        background-color: $white-color;
+        border-radius: 4px;
+
+        transition: .8s ease-in-out;
+    }
+    .line-top--active {
+        top: 50%;
+        transform: translateY(-50%) rotate(215deg);
+    }
+    .line-bot--active {
+        top: 50%;
+        transform: translateY(-50%) rotate(-215deg);
+    }
+}
+@keyframes btnTurnAround {
+    to {
+        transform: rotate3d(360deg);
+    }
+}
+.multiUseBtn--active {
+    .line-bot-btn, .line-top-btn {
+        background-color: $main-color;
+    }
+}
+.visible--active {
+    @include visible;
+}
+.menu-mobile__wrapper--active {
+    transform: translateX(0);
+}

@@ -1,0 +1,98 @@
+@mixin box-shadow {
+    box-shadow: 0 0 4px rgba(0, 0, 0, .3);
+}
+
+@mixin positionOnHoverNavItem {
+    position: absolute;
+    top: calc(100% + 4px);
+}
+
+@mixin psuedoNavItemOnHover {
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 4px;
+        top: 100%;
+        left: 0;
+        background-color: transparent;
+    }
+}
+
+@mixin poAbs-v-line-item($left, $width, $height, $bgc) {
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        left: $left;
+        top: 50%;
+        transform: translateY(-50%);
+        width: $width;
+        height: $height;
+        background-color: $bgc;
+    }
+}
+
+@mixin arrowUp($top, $right, $bd-width) {
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: $top;
+        right: $right;
+        width: 0;
+        height: 0;
+        border-width: $bd-width;
+        border-style: solid;
+        border-color: transparent transparent $white-color transparent;
+        z-index: 1;
+    }
+}
+
+@mixin border-top-lr($num) {
+    border-top-left-radius: $num;
+    border-top-right-radius: $num;
+}
+
+@mixin border-bot-lr($num) {
+    border-bottom-left-radius: $num;
+    border-bottom-right-radius: $num;
+}
+
+@mixin midflex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin imgCenter {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@mixin overlay($zIndex, $bgc) {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: $bgc;
+    z-index: $zIndex;
+}
+
+@mixin visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+@mixin hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
+@mixin text($fz, $cl) {
+    font-size: $fz;
+    color: $cl;
+}
